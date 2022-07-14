@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>aspnet-EcommerceWebsite-F6BD11F8-9815-4F91-8AAD-FBCADFDEA33C</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20220708053452_addProductModelintoDatabase.cs" />
+    <Compile Remove="Data\Migrations\20220708053452_addProductModelintoDatabase.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220708054154_updatedProductModel.cs" />
+    <Compile Remove="Data\Migrations\20220708054154_updatedProductModel.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220708054950_ProductModelTable.cs" />
+    <Compile Remove="Data\Migrations\20220708054950_ProductModelTable.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220708055534_ProductModel.cs" />
+    <Compile Remove="Data\Migrations\20220708055534_ProductModel.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220708055720_ProductModel.cs" />
+    <Compile Remove="Data\Migrations\20220708055720_ProductModel.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220708092137_ProductModel.cs" />
+    <Compile Remove="Data\Migrations\20220708092137_ProductModel.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FontAwesome" Version="4.7.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.24" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.25" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.25" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.25" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.25">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+    <PackageReference Include="X.PagedList.Mvc.Core" Version="8.4.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
+</Project>

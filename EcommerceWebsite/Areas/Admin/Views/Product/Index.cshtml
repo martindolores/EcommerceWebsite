@@ -1,0 +1,123 @@
+﻿@using EcommerceWebsite.Models;
+@model IEnumerable<Products>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br />
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info">Product List</h2>
+    </div>
+    <div class="col-6 text-right">
+        <a asp-action="Create" class="btn btn-info"><i class="fa-solid fa-plus"></i>&nbsp; Add New Product</a>
+    </div>
+</div>
+<form method="post">
+    <div class="row">
+        <div class="col-3 input-group">
+            <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></span>
+            <input type="text" class="form-control" name="searchString" id="Search" placeholder="Product Name" aria-describedby="basic-addon1"/>
+        </div>
+    </div>
+</form> 
+<br />
+<div>
+    <table class="table table-striped border" id="myTable">
+        <thead>
+            <tr class="table-info">
+                <th>
+                    @Html.DisplayNameFor(expression: c => c.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(expression: c => c.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(expression: c => c.ProductColour)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(expression: c => c.IsAvailable)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(expression: c => c.ProductTypeId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(expression: c => c.TagNameId)
+                </th>
+
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="Search">
+                    <td>@item.Name</td>
+                    <td>@item.Price</td>
+                    <td style="background:@item.ProductColour content-box; box-shadow: inset 0 0 0 10px white, inset 0 0 0 12px black"></td>
+                    <td>@item.IsAvailable</td>
+                    <td>@item.ProductTypes.ProductType</td>
+                    <td>@item.TagName.TagNames</td>
+                    <td>
+                        <partial name="_ButtonProductPartial" model="@item.Id" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+        
+        </table>
+    </div>
+        
+    @section scripts{
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#myTable').DataTable({
+                    "bFilter" : false
+                });
+            });
+        </script>
+        
+        @*Save Alert*@
+        <script type="text/javascript">
+        $(function(){
+            var save = '@TempData["save"]'
+            if (save != "") {
+                alertify.success(save);
+            }
+        })
+        </script>
+
+        @*Delete Alert*@
+        <script text="text/javascript">
+        $(function () {
+            var deleted = '@TempData["delete"]'
+            if (deleted != "") {
+                alertify.error(deleted);
+            }
+        })
+        </script>
+
+        @*Search Function*@
+        <script type="text/javascript">
+            $(document).ready(function () {
+                function Contains(text_one, text_two) {
+                    if (text_one.indexOf(text_two) != -1)
+                        return true;
+                }
+                $("#Search").keyup(function () {
+                    var searchText = $("#Search").val().toLowerCase();
+                    $(".Search").each(function () {
+                        if (!Contains($(this).text().toLowerCase(), searchText)) {
+                            $(this).hide();
+                        }
+                        else {
+                            $(this).show();
+                        }
+                    });
+                });
+            });
+        </script>
+    }

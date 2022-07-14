@@ -1,0 +1,69 @@
+﻿@model EcommerceWebsite.Areas.Admin.Models.RoleUserVm;
+@{
+    ViewData["Title"] = "Assign";
+}
+<br />
+
+<h2 class="text-info">Assign User</h2>
+<form asp-action="Assign" method="post" enctype="multipart/form-data">
+    <div class="p-4 rounded border">
+        <div asp-validation-summary="ModelOnly" class="text-danger">
+
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="UserId"></label>
+            </div>
+            <div class="col-5">
+                <select asp-for="UserId" asp-items="ViewBag.UserId" class="form-control"></select>
+                @*<input asp-for="ProductTypeId" class="form-control">*@
+            </div>
+            <span asp-validation-for="UserId" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="RoleId"></label>
+            </div>
+            <div class="col-5">
+                <select asp-for="RoleId" asp-items="ViewBag.RoleId" class="form-control"></select>
+                @*<input asp-for="TagNameId" class="form-control">*@
+            </div>
+            <span asp-validation-for="RoleId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Assign" />
+            <a asp-action="Index" class="btn btn-success">Back to List</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{await Html.RenderPartialAsync(partialViewName: "_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+        $(function(){
+            var exist = '@TempData["exist"]'
+            if (exist != "") {
+                // Extend existing 'alert' dialog
+                if (!alertify.errorAlert) {
+                    //define a new errorAlert base on alert
+                    alertify.dialog('errorAlert', function factory() {
+                        return {
+                            build: function () {
+                                var errorHeader = '<span class="fa fa-times-circle fa-2x" '
+                                    + 'style="vertical-align:middle;color:#e10000;">'
+                                    + '</span> Error';
+                                this.setHeader(errorHeader);
+                            }
+                        };
+                    }, true, 'alert');
+                }
+                //launch it.
+                // since this was transient, we can launch another instance at the same time.
+                alertify
+                    .errorAlert(exist + "<br/><br/><br/>");
+            }
+        })
+    </script>
+}

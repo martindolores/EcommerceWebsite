@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<br />
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info">Assign User Role</h2>
+    </div>
+    @*<div class="col-6 text-right">
+        <a asp-action="Create" class="btn btn-info"><i class="fa-solid fa-plus"></i>&nbsp; Add New Roles</a>
+    </div>*@
+</div>
+<br />
+<div>
+    <table class="table table-striped border">
+        <tr class="table-info">
+            <th>
+                User Name
+            </th>
+            <th>
+                Role Name
+            </th>
+            @foreach (var item in ViewBag.UserRoles)
+            {
+            <tr>
+                <td>@item.UserName</td>
+                <td>@item.RoleName</td>
+                @*<td style="width:1500px">
+                    <partial name="_ButtonRolePartial" model="@item.Id" />
+                </td>*@
+            </tr>
+        }
+        </table>
+    </div>
+
+    @section scripts{
+        <script type="text/javascript">
+        $(function(){
+            var save = '@TempData["save"]'
+            if (save != "") {
+                alertify.success(save);
+            }
+        })
+        </script>
+        <script text="text/javascript">
+        $(function () {
+            var deleted = '@TempData["delete"]'
+            if (deleted != "") {
+                alertify.error(deleted);
+            }
+        })
+        </script>
+    }

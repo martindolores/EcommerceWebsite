@@ -1,0 +1,11 @@
+﻿@model string
+
+<td style="width : 150px">
+    <div class="btn-group">
+        <!--User Buttons-->
+        <a asp-action="Edit" asp-controller="User" class="btn btn-primary" asp-route-id="@Model"><i class="fa-solid fa-pen-to-square"></i></a>
+        <a asp-action="Details" asp-controller="User" class="btn btn-success" asp-route-id="@Model"><i class="fa-solid fa-bars"></i></a>
+        <a asp-action="Lock" asp-controller="User" class="btn btn-danger" asp-route-id="@Model"><i class="fa-solid fa-lock"></i></a>
+    </div>
+</td>
+
