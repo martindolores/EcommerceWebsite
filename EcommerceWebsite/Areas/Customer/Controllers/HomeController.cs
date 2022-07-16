@@ -85,6 +85,7 @@ namespace EcommerceWebsite.Controllers
             }
             products.Add(product);
             HttpContext.Session.Set("products", products);
+            TempData["addcart"] = "Item added to cart!";
             return RedirectToAction(nameof(Index));
         }
 

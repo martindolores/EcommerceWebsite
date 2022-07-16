@@ -33,3 +33,39 @@
 <div>
     @Html.PagedListPager(Model, generatePageUrl: c => Href(contentPath: "~/Customer/Home/Index?page=" + c), PagedListRenderOptions.Classic)
 </div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(function(){
+            var order = '@TempData["checkout"]'
+            if (order != "") {
+                // Extend existing 'alert' dialog
+                if (!alertify.errorAlert) {
+                    //define a new errorAlert base on alert
+                    alertify.dialog('errorAlert', function factory() {
+                        return {
+                            build: function () {
+                                var errorHeader = '<span class="fa-solid fa-circle-check" '
+                                    + 'style="vertical-align:middle;color:#09cf02;">'
+                                    + '</span> Order Placed';
+                                this.setHeader(errorHeader);
+                            }
+                        };
+                    }, true, 'alert');
+                }
+                //launch it.
+                // since this was transient, we can launch another instance at the same time.
+                alertify
+                    .errorAlert(order + "<br/><br/><br/>");
+            }
+        })
+    </script>
+    <script type="text/javascript">
+        $(function(){
+            var save = '@TempData["addcart"]'
+            if (save != "") {
+                alertify.success(save);
+            }
+        })
+    </script>
+}

@@ -21,12 +21,43 @@
             <span asp-validation-for="TagNames" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <input type="submit" class="btn btn-danger" value="Delete" />
+            <input type="submit" class="btn btn-danger delete" value="Delete" />
             <a asp-action="Index" class="btn btn-success">Back to List</a>
         </div>
     </div>
 </form>
 
+<div style="display:none" id="dialog-confirm" title="Delete Tag Name">
+    <p><span style="float:left;"></span><i class="fa-solid fa-triangle-exclamation"></i> Are you sure you want to Delete Tag Name?</p>
+</div>
+
 @section Scripts{
     @{await Html.RenderPartialAsync(partialViewName: "_ValidationScriptsPartial");}
+<script language="javascript" type="text/javascript">
+
+    var currentForm;
+    $(function () {
+        $("#dialog-confirm").dialog({
+            resizable: false,
+            modal: true,
+            autoOpen: false,
+            buttons: {
+                'Delete': function () {
+                    $(this).dialog('close');
+                    currentForm.submit();
+                },
+                'Cancel': function () {
+                    $(this).dialog('close');
+                }
+            }
+        });
+        $(".delete").click(function () {
+            currentForm = $(this).closest('form');
+            $("#dialog-confirm").dialog('open');
+            return false;
+        });
+    });
+
+</script>
+
 }

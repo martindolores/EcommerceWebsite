@@ -26,7 +26,7 @@ namespace EcommerceWebsite.Models
         [Required]
         public string Address { get; set; }
         [Display(Name = "Order Date")]
-        public DateTime OrderDate { get; set; }
+        public string OrderDate { get; set; }
         public virtual List<OrderDetails> OrderDetails { get; set; }
     }
 }

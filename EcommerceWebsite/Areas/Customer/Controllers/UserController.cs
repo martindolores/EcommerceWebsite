@@ -21,6 +21,7 @@ namespace EcommerceWebsite.Areas.Customer.Controllers
             _userManager = userManager;
             _db = db;
         }
+        [Authorize(Roles = "Admin")]
         public IActionResult Index()
         {
             return View(_db.ApplicationUser.ToList());
@@ -45,7 +46,7 @@ namespace EcommerceWebsite.Areas.Customer.Controllers
 
                     var isSaveRole = await _userManager.AddToRoleAsync(user,role: "Customer");
                     TempData["save"] = "User has been created successfully!";
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction("Index","Home", new {area = "Customer" });
                 }
                 foreach (var error in result.Errors)
                 {
@@ -57,6 +58,7 @@ namespace EcommerceWebsite.Areas.Customer.Controllers
         }
 
         //GET Edit Action Method
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(string id)
         {
             var users = _db.ApplicationUser.FirstOrDefault(c => c.Id == id);
@@ -69,6 +71,7 @@ namespace EcommerceWebsite.Areas.Customer.Controllers
 
         //POST Edit Action Method
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(ApplicationUser user)
         {
             var userInfo = _db.ApplicationUser.FirstOrDefault(c => c.Id == user.Id);
@@ -88,6 +91,7 @@ namespace EcommerceWebsite.Areas.Customer.Controllers
         }
 
         //GET Details Action Method
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(string id)
         {
             var users = _db.ApplicationUser.FirstOrDefault(c => c.Id == id);
@@ -99,6 +103,7 @@ namespace EcommerceWebsite.Areas.Customer.Controllers
         }
 
         //GET Lock Action Method
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Lock(string id)
         {
             if (id == null)
@@ -116,6 +121,7 @@ namespace EcommerceWebsite.Areas.Customer.Controllers
         //POST Lockout Action Method
         [HttpPost]
         [ActionName("Lock")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> LockUser(ApplicationUser user)
         {
             var userInfo = _db.ApplicationUser.FirstOrDefault(c => c.Id == user.Id);
@@ -134,6 +140,7 @@ namespace EcommerceWebsite.Areas.Customer.Controllers
         }
 
         //GET Active Action Method
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Active(string id)
         {
             var user = _db.ApplicationUser.FirstOrDefault(c => c.Id == id);
@@ -147,6 +154,7 @@ namespace EcommerceWebsite.Areas.Customer.Controllers
         //POST Active Action Method
         [HttpPost]
         [ActionName("Active")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> ActivateUser(ApplicationUser user)
         {
             var userInfo = _db.ApplicationUser.FirstOrDefault(c => c.Id == user.Id);
@@ -165,6 +173,7 @@ namespace EcommerceWebsite.Areas.Customer.Controllers
         }
 
         //GET Delete Action Method
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(string id)
         {
             var user = _db.ApplicationUser.FirstOrDefault(c => c.Id == id);
@@ -177,6 +186,7 @@ namespace EcommerceWebsite.Areas.Customer.Controllers
 
         //POST Delete Action Method
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(ApplicationUser user)
         {
             var userInfo = _db.ApplicationUser.FirstOrDefault(c => c.Id == user.Id);

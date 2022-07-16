@@ -79,7 +79,7 @@
             </div>
 
             <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Update" />
+                <input type="submit" class="btn btn-primary edit" value="Update" />
                 <a asp-action="Index" class="btn btn-success">Back to List</a>
             </div>
         </div>
@@ -90,7 +90,36 @@
         
     </div>
 </form>
+<div style="display:none" id="dialog-confirm" title="Edit Product">
+    <p><span style="float:left;"></span><i class="fa-solid fa-triangle-exclamation"></i> Are you sure you want to edit Product?</p>
+</div>
 
 @section Scripts{
     @{await Html.RenderPartialAsync(partialViewName: "_ValidationScriptsPartial");}
+<script language="javascript" type="text/javascript">
+
+    var currentForm;
+    $(function () {
+        $("#dialog-confirm").dialog({
+            resizable: false,
+            modal: true,
+            autoOpen: false,
+            buttons: {
+                'Update': function () {
+                    $(this).dialog('close');
+                    currentForm.submit();
+                },
+                'Cancel': function () {
+                    $(this).dialog('close');
+                }
+            }
+        });
+        $(".edit").click(function () {
+            currentForm = $(this).closest('form');
+            $("#dialog-confirm").dialog('open');
+            return false;
+        });
+    });
+
+</script>
 }

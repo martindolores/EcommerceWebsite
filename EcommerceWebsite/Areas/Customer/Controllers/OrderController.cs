@@ -44,7 +44,8 @@ namespace EcommerceWebsite.Areas.Customer.Controllers
             _db.Order.Add(aOrder);
             await _db.SaveChangesAsync();
             HttpContext.Session.Set("products", new List<Products>());
-            return View();
+            TempData["checkout"] = "Order has been successfully placed!";
+            return RedirectToAction("Index", "Home", new { area = "Customer" });
         }
 
         public string GetOrderNo()
