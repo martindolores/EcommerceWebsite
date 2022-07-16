@@ -34,7 +34,13 @@ namespace EcommerceWebsite.Controllers
 
         public IActionResult Index(int? page)
         {
-            return View(_db.Products.Include(navigationPropertyPath: c => c.ProductTypes).Include(navigationPropertyPath: c => c.TagName).ToPagedList(pageNumber:page??1, pageSize: 6));
+            var items = _db.Products.Include(navigationPropertyPath: c => c.ProductTypes).Include(navigationPropertyPath: c => c.TagName).ToPagedList(pageNumber: page ?? 1, pageSize: 6);
+            var isAjax = Request.Headers["X-Requested-With"] == "XMLHttpRequest";
+            if (isAjax)
+            {
+                return PartialView("_IndexPartial", items);
+            }
+            return View(items);
         }
 
         public IActionResult Privacy()

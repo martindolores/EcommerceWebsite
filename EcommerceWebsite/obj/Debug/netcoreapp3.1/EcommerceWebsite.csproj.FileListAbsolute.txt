@@ -244,3 +244,4 @@ C:\Projects\ECommerceWebsite\EcommerceWebsite\EcommerceWebsite\obj\Debug\netcore
 C:\Projects\ECommerceWebsite\EcommerceWebsite\EcommerceWebsite\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Role\Delete.cshtml.g.cs
 C:\Projects\ECommerceWebsite\EcommerceWebsite\EcommerceWebsite\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Role\Assign.cshtml.g.cs
 C:\Projects\ECommerceWebsite\EcommerceWebsite\EcommerceWebsite\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Role\AssignUserRole.cshtml.g.cs
+C:\Projects\ECommerceWebsite\EcommerceWebsite\EcommerceWebsite\obj\Debug\netcoreapp3.1\Razor\Areas\Customer\Views\Home\_IndexPartial.cshtml.g.cs
