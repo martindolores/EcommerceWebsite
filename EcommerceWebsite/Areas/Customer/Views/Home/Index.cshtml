@@ -51,7 +51,12 @@
     }
 </div>
 <div>
-    @Html.PagedListPager(Model, generatePageUrl: c => Href(contentPath: "~/Customer/Home/Index?page=" + c), PagedListRenderOptions.Classic)
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page } ), new PagedListRenderOptions{
+        PageClasses = new string [] {"page-link"},
+        UlElementClasses = new string[] {"pagination"},
+        LiElementClasses = new string[] {"page-item"},
+    })
 </div>
 
 @section Scripts {
