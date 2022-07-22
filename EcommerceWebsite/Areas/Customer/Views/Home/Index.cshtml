@@ -59,9 +59,25 @@
     </script>
     <script type="text/javascript">
         $(function(){
-            var save = '@TempData["addcart"]'
+            var addcart = '@TempData["addcart"]'
+            if (addcart != "") {
+                alertify.success(addcart);
+            }
+        })
+    </script>
+    <script type="text/javascript">
+        $(function(){
+            var save = '@TempData["save"]'
             if (save != "") {
                 alertify.success(save);
+            }
+        })
+    </script>
+    <script type="text/javascript">
+        $(function(){
+            var login = '@TempData["login"]'
+            if (login != "") {
+                alertify.success(login);
             }
         })
     </script>
